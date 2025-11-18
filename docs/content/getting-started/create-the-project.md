@@ -18,19 +18,12 @@ You can clone the template into a new repository on GitHub using the _Use this t
 
 Alternatively, you can create a new Git repository using `git init` and then follow the instructions to apply the template to an existing repository.
 
-In any case, after cloning the repository contents, remove the following files:
+In any case, after cloning the repository contents, remove the following files and directories:
 
 - `copier.yml`
 - `LICENSE`
 - `README.md`
-- `*.jinja`
-- `{%*`
-- `{{*`
+- `template/`
 
-Or use this command to do that:
-
-```shell
-rm copier.yml LICENSE README.md *.jinja {%* {{*
-```
 Furthermore, change the fields in `zensical.toml` to suit your needs. In particular, change `site_url` to the URL where the site will be hosted. Additionally, change the `site_name`, `site_description`, `site_author`, and the URLs for `repo_url` (where the repository button links to) and `edit_uri` (where the pages can be edited).
 

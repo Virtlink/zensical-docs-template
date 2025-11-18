@@ -8,19 +8,8 @@ _exclude:
   - .git
   - .DS_Store
   - .svn
-  - LICENSE
-  - README.md
-  - .venv/
-  - public/
-  - docs/.venv/
-  - docs/.cache/
-  - docs/public/
-  - docs/uv.lock
-  - .github/
-  - .gitlab-ci.yml
-  - docs/pyproject.toml
-  - docs/zensical.toml
 
+_subdirectory: template/
 
 name:
   type: str
