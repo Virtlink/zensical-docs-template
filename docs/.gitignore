@@ -18,6 +18,20 @@ ENV/
 env.bak/
 venv.bak/
 pythonenv*
-/site/
 build/
 *.egg-info/
+.cache/
+
+
+# IntelliJ
+/*.iml
+.idea/
+
+
+# Direnv
+.direnv/
+
+
+# Zensical/MkDocs
+public/
+site/

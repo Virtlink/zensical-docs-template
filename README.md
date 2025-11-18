@@ -1,94 +1,53 @@
-# MkDocs Material Template
+# Zensical Docs Template
 [![Build][github-build-badge]][github-build]
 [![License][license-badge]][license]
 [![Documentation][documentation-badge]][documentation]
 
-A MkDocs Material Template repository. It enables a useful set of extensions and plugins by default, and contains a Makefile that uses Docker to serve the documentation locally, and a GitHub workflow to publish the documentation on GitHub Pages by default.
+A Zensical Docs Template repository. It enables an opinionated set of extensions and plugins by default, and contains GitHub and GitLab CI workflows to publish the documentation.
 
 [![Documentation][documentation-button]][documentation]
 
 - [Getting Started][documentation]
-- [Material for MkDocs documentation](https://squidfunk.github.io/mkdocs-material/)
+- [Zensical documentation](https://zensical.org/)
 
-This template is intended both for those that include the documentation in their main repository, and those that use a separate repository for the documentation.
+This template is intended both for those that include the documentation in their main repository, and those that use a separate repository for the documentation, which is why all the documentation files are in the `docs/` subfolder.
 
 
 ## Quick Start
-To build the pages and see edits live using [Docker](https://www.docker.com/):
+To build the pages and see edits live using [UV](https://docs.astral.sh/uv/):
 
 ```shell
 cd docs/
-make
 ```
-
-Or using [Python 3](https://www.python.org/), creating and activating a _virtual environment_:
-
 ```shell
-cd docs/
-
-python3 -m venv .venv
-source .venv/bin/activate
-
-pip install -r requirements.txt
-mkdocs serve
-
-deactivate
-```
-
-Or using [UV](https://docs.astral.sh/uv/), creating and activating a _virtual environment_:
-
-```shell
-cd docs/
-
-uv venv
-
-uv pip install -r requirements.txt
-uv run mkdocs serve
+uv run zensical serve
 ```
 
 Navigate to [localhost:8000](http://localhost:8000/) to see the documentation.
 The local documentation is automatically reloaded when changes occur.
-Changes pushed to the `main` branch are automatically deployed to GitHub Pages.
+Changes pushed to the `main` branch are automatically deployed on GitHub and GitLab.
 
 
 ## Updating Dependencies
-Install the [`pip-check-updates`](https://pypi.org/project/pip-check-updates/) tool in a _virtual environment_ (e.g., using `pip install pip-check-updates` or `uv pip install pip-check-updates`). Usage:
+Update dependencies using:
 
 ```shell
 cd docs/
-pcu requirements.txt
 ```
-
-And update the dependencies to their latest versions using:
-
 ```shell
-cd docs/
-pcu -u requirements.txt
+uv lock --upgrade
 ```
-
-> [!NOTE]
-> Install the updated dependencies using:
->
-> ```shell
-> pip install -r requirements.txt
-> ```
->
-> Or, when using UV:
->
-> ```shell
-> uv pip install -r requirements.txt
-> ```
 
 
 ## License
 [![License: CC0-1.0](https://licensebuttons.net/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)
 
-To the extent possible under law, Daniel A. A. Pelsmaeker has waived all copyright and related or neighboring rights to the MkDocs Material Template repository. Feel free to use this as you see fit, no attribution required.
+To the extent possible under law, Daniel A. A. Pelsmaeker has waived all copyright and related or neighboring rights to the Zensical Docs Template repository. Feel free to use this as you see fit, no attribution required.
 
-[github-build-badge]: https://img.shields.io/github/actions/workflow/status/Virtlink/mkdocs-material-template/documentation.yml
-[github-build]: https://github.com/Virtlink/mkdocs-material-template/actions
-[license-badge]: https://img.shields.io/github/license/Virtlink/mkdocs-material-template
-[license]: https://github.com/Virtlink/mkdocs-material-template/blob/master/LICENSE
+[github-build-badge]: https://img.shields.io/github/actions/workflow/status/Virtlink/zensical-docs-template/documentation.yml
+[github-build]: https://github.com/Virtlink/zensical-docs-template/actions
+[license-badge]: https://img.shields.io/github/license/Virtlink/zensical-docs-template
+[license]: https://github.com/Virtlink/zensical-docs-template/blob/master/LICENSE
 [documentation-badge]: https://img.shields.io/badge/docs-latest-brightgreen
-[documentation]: https://pelsmaeker.net/mkdocs-material-template/
+[documentation]: https://pelsmaeker.net/zensical-docs-template/
 [documentation-button]: https://img.shields.io/badge/Documentation-blue?style=for-the-badge&logo=googledocs&logoColor=white
