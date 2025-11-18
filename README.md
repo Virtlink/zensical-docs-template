@@ -14,7 +14,7 @@ This template is intended both for those that include the documentation in their
 
 
 ## Quick Start
-To use this template, install [Copier]() and invoke:
+To use this template, install [Copier](https://copier.readthedocs.io/en/stable/) and invoke:
 
 ```shell
 copier copy gh:virtlink/zensical-docs-template my-docs-repo
@@ -29,9 +29,7 @@ cd docs/
 uv run zensical serve
 ```
 
-Navigate to [localhost:8000](http://localhost:8000/) to see the documentation.
-The local documentation is automatically reloaded when changes occur.
-Changes pushed to the `main` branch are automatically deployed on GitHub and GitLab.
+Navigate to [localhost:8000](http://localhost:8000/) to see the documentation. The local documentation is automatically reloaded when changes occur. Changes pushed to the `main` branch are automatically deployed on GitHub and GitLab.
 
 
 
