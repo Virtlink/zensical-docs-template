@@ -37,18 +37,6 @@ jobs:
         with:
           enable-cache: true
 
-      - name: "Setup Python"
-        run: |
-          cd docs/
-          uv python install
-        with:
-          python-version-file: "pyproject.toml"
-
-      - name: "Install project dependencies"
-        run: |
-          cd docs/
-          uv sync --locked --all-extras --dev
-
       - name: "Build pages artifact"
         run: |
           cd docs/
