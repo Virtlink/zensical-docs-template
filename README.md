@@ -44,10 +44,10 @@ uv lock --upgrade
 
 To the extent possible under law, Daniel A. A. Pelsmaeker has waived all copyright and related or neighboring rights to the Zensical Docs Template repository. Feel free to use this as you see fit, no attribution required.
 
-[github-build-badge]: https://img.shields.io/github/actions/workflow/status/Virtlink/zensical-docs-template/documentation.yml
+[github-build-badge]: https://img.shields.io/github/actions/workflow/status/Virtlink/zensical-docs-template/documentation.yaml
 [github-build]: https://github.com/Virtlink/zensical-docs-template/actions
 [license-badge]: https://img.shields.io/github/license/Virtlink/zensical-docs-template
 [license]: https://github.com/Virtlink/zensical-docs-template/blob/master/LICENSE
 [documentation-badge]: https://img.shields.io/badge/docs-latest-brightgreen
 [documentation]: https://pelsmaeker.net/zensical-docs-template/
-[documentation-button]: https://img.shields.io/badge/Documentation-blue?style=for-the-badge&logo=googledocs&logoColor=white
+[documentation-button]: https://img.shields.io/badge/View_Documentation-blue?style=for-the-badge&logo=googledocs&logoColor=white
