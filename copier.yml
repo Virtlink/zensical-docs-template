@@ -1,7 +1,13 @@
 ---
 _exclude:
+  - copier.yaml
   - copier.yml
+  - "~*"
+  - "*.py[co]"
+  - "__pycache__"
   - .git
+  - .DS_Store
+  - .svn
   - LICENSE
   - README.md
   - .venv/
@@ -34,17 +40,22 @@ vcs_platform:
     - Other
   default: GitHub
 
+ci:
+  type: str
+  when: false
+  default: "{{ vcs_platform }}"
+
 vcs_organization:
   type: str
   help: "What is the organization name of the repository on {{ vcs_platform }}?"
   placeholder: "myusername"
-  when: "{{ vcs_platform != Other }}"
+  when: "{{ vcs_platform != 'Other' }}"
 
 vcs_project:
   type: str
   help: "What is the project name of the repository on {{ vcs_platform }}?"
   placeholder: "my-docs-repo"
-  when: "{{ vcs_platform != Other }}"
+  when: "{{ vcs_platform != 'Other' }}"
 
 author:
   type: str
@@ -59,42 +70,42 @@ site_url:
 repo_url:
   type: str
   help: "What is the URL of the documentation repository?"
-  when: "{{ vcs_platform == Other }}"
+  when: "{{ vcs_platform == 'Other' }}"
   default: |-
-    {%-   if vcs_platform == GitHub -%}https://github.com/{{ vcs_organization }}/{{ vcs_project }}
-    {%- elif vcs_platform == GitLab -%}https://gitlab.com/{{ vcs_organization }}/{{ vcs_project }}
+    {%-   if vcs_platform == 'GitHub' -%}https://github.com/{{ vcs_organization }}/{{ vcs_project }}
+    {%- elif vcs_platform == 'GitLab' -%}https://gitlab.com/{{ vcs_organization }}/{{ vcs_project }}
     {%- endif -%}
 
 edit_uri:
   type: str
   help: "What is the URL prefix at which a page can be edited?"
-  when: "{{ vcs_platform == Other }}"
+  when: "{{ vcs_platform == 'Other' }}"
   default: |-
-    {%-   if vcs_platform == GitHub -%}{{ repo_url }}/edit/main/docs
-    {%- elif vcs_platform == GitLab -%}{{ repo_url }}/-/edit/main/docs/
+    {%-   if vcs_platform == 'GitHub' -%}{{ repo_url }}/edit/main/docs
+    {%- elif vcs_platform == 'GitLab' -%}{{ repo_url }}/-/edit/main/docs/
     {%- endif -%}
 
 build-badge:
   type: str
   when: false
   default: |-
-    {%-   if vcs_platform == GitHub -%}https://img.shields.io/github/actions/workflow/status/{{ vcs_organization }}/{{ vcs_project }}/documentation.yaml
-    {%- elif vcs_platform == GitLab -%}{{ repo_url }}/badges/main/pipeline.svg
+    {%-   if vcs_platform == 'GitHub' -%}https://img.shields.io/github/actions/workflow/status/{{ vcs_organization }}/{{ vcs_project }}/documentation.yaml
+    {%- elif vcs_platform == 'GitLab' -%}{{ repo_url }}/badges/main/pipeline.svg
     {%- endif -%}
     
 build-badge-url:
   type: str
   when: false
   default: |-
-    {%-   if vcs_platform == GitHub -%}{{ repo_url }}/actions
-    {%- elif vcs_platform == GitLab -%}{{ repo_url }}/actions
+    {%-   if vcs_platform == 'GitHub' -%}{{ repo_url }}/actions
+    {%- elif vcs_platform == 'GitLab' -%}{{ repo_url }}/actions
     {%- endif -%}
 
 docs-badge:
   type: str
   when: false
   default: |-
-    {%- if vcs_platform != Other -%} https://img.shields.io/badge/docs-available-green.svg {%- endif -%}
+    {%- if vcs_platform != 'Other' -%} https://img.shields.io/badge/docs-available-green.svg {%- endif -%}
 
 docs-badge-url:
   type: str
