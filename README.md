@@ -29,13 +29,13 @@ Changes pushed to the `main` branch are automatically deployed on GitHub and Git
 
 
 ## Updating Dependencies
-Update dependencies using:
+To update the Zensical dependency, find the latest release in the [Zensical releases](https://github.com/zensical/zensical/releases) and update the Zensical version in `docs/pyproject.toml`. Then run:
 
 ```shell
 cd docs/
 ```
 ```shell
-uv lock --upgrade
+uv sync --dev
 ```
 
 
