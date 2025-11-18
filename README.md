@@ -7,14 +7,20 @@ A Zensical Docs Template repository. It enables an opinionated set of extensions
 
 [![Documentation][documentation-button]][documentation]
 
-- [Getting Started][documentation]
+- [Getting Started](https://pelsmaeker.net/zensical-docs-template/getting-started/create-the-project/)
 - [Zensical documentation](https://zensical.org/)
 
 This template is intended both for those that include the documentation in their main repository, and those that use a separate repository for the documentation, which is why all the documentation files are in the `docs/` subfolder.
 
 
 ## Quick Start
-To build the pages and see edits live using [UV](https://docs.astral.sh/uv/):
+To use this template, install [Copier]() and invoke:
+
+```shell
+copier copy gh:virtlink/zensical-docs-template my-docs-repo
+```
+
+where `my-docs-repo` is the name of the directory where you want to create the new documentation repository. From within the documentation repository, to build the pages and see edits live using [UV](https://docs.astral.sh/uv/):
 
 ```shell
 cd docs/
