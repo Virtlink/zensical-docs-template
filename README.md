@@ -28,16 +28,6 @@ The local documentation is automatically reloaded when changes occur.
 Changes pushed to the `main` branch are automatically deployed on GitHub and GitLab.
 
 
-## Updating Dependencies
-To update the Zensical dependency, find the latest release in the [Zensical releases](https://github.com/zensical/zensical/releases) and update the Zensical version in `docs/pyproject.toml`. Then run:
-
-```shell
-cd docs/
-```
-```shell
-uv sync --dev
-```
-
 
 ## License
 [![License: CC0-1.0](https://licensebuttons.net/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)

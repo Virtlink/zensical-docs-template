@@ -1,0 +1,103 @@
+---
+_exclude:
+  - copier.yml
+  - .git
+  - LICENSE
+  - README.md
+  - .venv/
+  - public/
+  - docs/.venv/
+  - docs/.cache/
+  - docs/public/
+  - docs/uv.lock
+  - .github/
+  - .gitlab-ci.yml
+  - docs/pyproject.toml
+  - docs/zensical.toml
+
+
+name:
+  type: str
+  help: "Name of the documentation site or project?"
+
+description:
+  type: str
+  help: "Description of the documentation site or project?"
+  default: "Guides, tutorials, and reference information."
+
+vcs_platform:
+  type: str
+  help: "Which Git platform will you use?"
+  choices:
+    - GitHub
+    - GitLab
+    - Other
+  default: GitHub
+
+vcs_organization:
+  type: str
+  help: "What is the organization name of the repository on {{ vcs_platform }}?"
+  placeholder: "myusername"
+  when: "{{ vcs_platform != Other }}"
+
+vcs_project:
+  type: str
+  help: "What is the project name of the repository on {{ vcs_platform }}?"
+  placeholder: "my-docs-repo"
+  when: "{{ vcs_platform != Other }}"
+
+author:
+  type: str
+  help: "Name of the author?"
+  default: "{{ vcs_organization }}"
+
+site_url:
+  type: str
+  help: "What is the URL at which the site will be published?"
+  placeholder: "https://{{ vcs_organization }}.com/{{ vcs_project }}"
+
+repo_url:
+  type: str
+  help: "What is the URL of the documentation repository?"
+  when: "{{ vcs_platform == Other }}"
+  default: |-
+    {%-   if vcs_platform == GitHub -%}https://github.com/{{ vcs_organization }}/{{ vcs_project }}
+    {%- elif vcs_platform == GitLab -%}https://gitlab.com/{{ vcs_organization }}/{{ vcs_project }}
+    {%- endif -%}
+
+edit_uri:
+  type: str
+  help: "What is the URL prefix at which a page can be edited?"
+  when: "{{ vcs_platform == Other }}"
+  default: |-
+    {%-   if vcs_platform == GitHub -%}{{ repo_url }}/edit/main/docs
+    {%- elif vcs_platform == GitLab -%}{{ repo_url }}/-/edit/main/docs/
+    {%- endif -%}
+
+build-badge:
+  type: str
+  when: false
+  default: |-
+    {%-   if vcs_platform == GitHub -%}https://img.shields.io/github/actions/workflow/status/{{ vcs_organization }}/{{ vcs_project }}/documentation.yaml
+    {%- elif vcs_platform == GitLab -%}{{ repo_url }}/badges/main/pipeline.svg
+    {%- endif -%}
+    
+build-badge-url:
+  type: str
+  when: false
+  default: |-
+    {%-   if vcs_platform == GitHub -%}{{ repo_url }}/actions
+    {%- elif vcs_platform == GitLab -%}{{ repo_url }}/actions
+    {%- endif -%}
+
+docs-badge:
+  type: str
+  when: false
+  default: |-
+    {%- if vcs_platform != Other -%} https://img.shields.io/badge/docs-available-green.svg {%- endif -%}
+
+docs-badge-url:
+  type: str
+  when: false
+  default: "{{ site_url }}"
+
