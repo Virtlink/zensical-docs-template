@@ -28,6 +28,11 @@ jobs:
           cd docs/
           uv lock --upgrade
 
+      - name: "Update pyproject.toml"
+        uses: virtlink/sync-pyproject@cc6a7de507b22c012d5af84dcffcf5f950543163
+        with:
+          directory: docs/
+
       - name: "Create PR"
         id: cpr
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 #v8.1.1
