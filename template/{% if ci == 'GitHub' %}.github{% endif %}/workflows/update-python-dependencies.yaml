@@ -10,20 +10,16 @@ on:  # yamllint disable-line rule:truthy
     - cron: "0 6 * * 6"
   workflow_dispatch: # Allow manual triggering
 
-permissions:
-  contents: write
-  pull-requests: write
-
 jobs:
   update-dependencies:
-    name: "Update dependencies"
+    name: "Update Python dependencies"
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout"
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: "Install UV"
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
         with:
           enable-cache: true
 
@@ -34,7 +30,7 @@ jobs:
 
       - name: "Create PR"
         id: cpr
-        uses: peter-evans/create-pull-request@v8
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 #v8.1.1
         with:
           commit-message: "Update Python dependencies"
           title: "Update Python dependencies"
@@ -47,14 +43,15 @@ jobs:
           labels: |
             dependencies
             automated
+          token: ${{ secrets.PAT_CREATE_PR }}
 
       - name: "Auto-merge PR once checks pass"
         if: |
           steps.cpr.outputs.pull-request-operation == 'created' ||
           steps.cpr.outputs.pull-request-operation == 'updated'
         # NOTE: gh pr merge --auto (automerge) cannot delete the branch
-        #   (--delete-branch, see cli/cli#9073)
+        #   (--delete-branch, see cli/cli/issues/9073)
         run: |
           gh pr merge ${{ steps.cpr.outputs.pull-request-number }} --auto --squash
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_CREATE_PR }}

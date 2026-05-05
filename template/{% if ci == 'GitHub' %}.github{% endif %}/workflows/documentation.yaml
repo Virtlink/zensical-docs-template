@@ -1,11 +1,13 @@
 ---
-name: Documentation
+name: "Documentation"
 
 on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - main
-      - master
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:  # Allow running this workflow manually (Actions tab)
 
 permissions:
@@ -18,21 +20,15 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    name: Deploy
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
+    name: "Build Documentation"
     runs-on: ubuntu-latest
     steps:
-      - name: "Configure GitHub Pages"
-        uses: actions/configure-pages@v5
-
       - name: "Checkout"
-        uses: actions/checkout@v5
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: "Install UV"
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
         with:
           enable-cache: true
 
@@ -42,10 +38,23 @@ jobs:
           uv run zensical build --clean
 
       - name: "Upload pages artifact"
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        if: github.event_name != 'pull_request'
         with:
           path: docs/public
+
+  deploy:
+    name: "Deploy Documentation"
+    needs: build
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: "Configure GitHub Pages"
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
           
       - name: "Deploy pages artifact"
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
