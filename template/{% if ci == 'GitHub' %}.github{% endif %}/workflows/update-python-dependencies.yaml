@@ -1,0 +1,57 @@
+---
+name: Update Python Dependencies
+
+on:  # yamllint disable-line rule:truthy
+  schedule:
+    # Run at 6:00 on Saturday
+    - cron: "0 6 * * 6"
+  workflow_dispatch: # Allow manual triggering
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-dependencies:
+    name: "Update dependencies"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v6
+
+      - name: "Install UV"
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: "Update Python lockfile"
+        run: |
+          cd docs/
+          uv lock --upgrade
+
+      - name: "Create PR"
+        id: cpr
+        uses: peter-evans/create-pull-request@v8
+        with:
+          commit-message: "Update Python dependencies"
+          title: "Update Python dependencies"
+          body: |
+            Automated update of Python dependencies in docs/ using UV.
+
+            This PR was created by the update workflow.
+          branch: chore/update-python-dependencies
+          delete-branch: true
+          labels: |
+            dependencies
+            automated
+
+      - name: "Auto-merge PR once checks pass"
+        if: |
+          steps.cpr.outputs.pull-request-operation == 'created' ||
+          steps.cpr.outputs.pull-request-operation == 'updated'
+        # NOTE: gh pr merge --auto (automerge) cannot delete the branch
+        #   (--delete-branch, see cli/cli#9073)
+        run: |
+          gh pr merge ${{ steps.cpr.outputs.pull-request-number }} --auto --squash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

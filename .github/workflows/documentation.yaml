@@ -6,6 +6,10 @@ on:  # yamllint disable-line rule:truthy
     branches:
       - main
       - master
+  pull_request:
+    branches:
+      - main
+      - master
   workflow_dispatch:  # Allow running this workflow manually (Actions tab)
 
 permissions:
