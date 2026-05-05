@@ -67,7 +67,7 @@ By design, workflows that use the `GITHUB_TOKEN` [will not trigger new workflow 
 4.  Click _Generate token_.
 
 !!! note "Machine account"
-    Ideally you'd create this PAT on a [machine account](https://docs.github.com/en/github/site-policy/github-terms-of-service#3-account-requirements) with collaborator access to the repository.
+    The created PR will show as if created by the account for whom the PAT is generated (i.e., you). Ideally you'd create this PAT on a [machine account](https://docs.github.com/en/github/site-policy/github-terms-of-service#3-account-requirements) with collaborator access to the repository.
 
 
 ## Configure the repository to use the personal access token
