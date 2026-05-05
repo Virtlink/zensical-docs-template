@@ -1,0 +1,32 @@
+---
+name: "Build Documentation"
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:  # Allow running this workflow manually (Actions tab)
+
+jobs:
+  build:
+    name: "Build"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v5
+
+      - name: "Install UV"
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: "Build pages artifact"
+        run: |
+          cd docs/
+          uv run zensical build --clean
+

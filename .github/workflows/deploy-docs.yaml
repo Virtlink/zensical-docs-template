@@ -1,5 +1,5 @@
 ---
-name: Documentation
+name: "Deploy Documentation"
 
 on:  # yamllint disable-line rule:truthy
   push:
@@ -23,7 +23,7 @@ concurrency:
 
 jobs:
   deploy:
-    name: Deploy
+    name: "Deploy"
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
