@@ -29,7 +29,7 @@ In your GitHub repository:
     - **Protect matching branches**
         - Require status checks to pass before merging: :white_check_mark: yes
             - Require branches to be up to date before merging: :white_check_mark: yes
-            - Status checks that are required: `Build`
+            - Status checks that are required: `Build Documentation`
 
 4.  Click _Save changes_.
 

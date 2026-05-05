@@ -1,11 +1,13 @@
 ---
-name: "Deploy Documentation"
+name: "Documentation"
 
 on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - main
-      - master
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:  # Allow running this workflow manually (Actions tab)
 
 permissions:
@@ -18,16 +20,10 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    name: "Deploy"
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
+    name: "Build Documentation"
     runs-on: ubuntu-latest
     steps:
-      - name: "Configure GitHub Pages"
-        uses: actions/configure-pages@v5
-
       - name: "Checkout"
         uses: actions/checkout@v5
 
@@ -43,8 +39,21 @@ jobs:
 
       - name: "Upload pages artifact"
         uses: actions/upload-pages-artifact@v4
+        if: github.event_name != 'pull_request'
         with:
           path: docs/public
+
+  deploy:
+    name: "Deploy Documentation"
+    needs: build
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: "Configure GitHub Pages"
+        uses: actions/configure-pages@v5
           
       - name: "Deploy pages artifact"
         id: deployment
