@@ -44,7 +44,7 @@ In your GitHub repository:
 
 
 ## Create a custom personal access token
-By design, workflows that use the `GITHUB_TOKEN` [will not trigger new workflow runs](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow#triggering-a-workflow-from-a-workflow), to avoid recursive workflow runs. This means that the status checks will not automatically run for the PRs created by the workflow. To fix this, we follow the approach [outlined here](https://github.com/peter-evans/create-pull-request/issues/48#issuecomment-536204092) and create a custom authentication token with the `repo` scope.
+By design, workflows that use the `GITHUB_TOKEN` [will not trigger new workflow runs](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow#triggering-a-workflow-from-a-workflow), to avoid recursive workflow runs. This means that the status checks will not automatically run for the PRs created by the workflow. To fix this, we follow the GitHub recommended approach [outlined here](https://github.com/peter-evans/create-pull-request/blob/main/docs/concepts-guidelines.md#triggering-further-workflow-runs) and create a personal access token (PAT) with the `repo` scope.
 
 1.  In your GitHub profile, go to _Settings_, _Developer settings_, _Personal access tokens_, _Tokens (classic)_ (or [click here](https://github.com/settings/tokens)).
 2.  Click the _Generate new token_ button and select _Generate new token_.
@@ -65,6 +65,9 @@ By design, workflows that use the `GITHUB_TOKEN` [will not trigger new workflow 
         Feel free to restrict the repositories for which this token works.
 
 4.  Click _Generate token_.
+
+!!! note "Machine account"
+    Ideally you'd create this PAT on a [machine account](https://docs.github.com/en/github/site-policy/github-terms-of-service#3-account-requirements) with collaborator access to the repository.
 
 
 ## Configure the repository to use the personal access token

@@ -35,6 +35,8 @@ jobs:
       - name: "Create PR"
         id: cpr
         uses: peter-evans/create-pull-request@v8
+        env:
+          GH_TOKEN: ${{ secrets.PAT_CREATE_PR }}
         with:
           commit-message: "Update Python dependencies"
           title: "Update Python dependencies"
