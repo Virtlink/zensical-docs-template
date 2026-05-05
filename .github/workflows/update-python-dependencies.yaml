@@ -1,5 +1,8 @@
 ---
-name: Update Python Dependencies
+# NOTE: This actions requires that GitHub Actions is allowed
+# to create and approve pull requests.
+# See: https://stackoverflow.com/a/73155199/146622
+name: "Update Python Dependencies"
 
 on:  # yamllint disable-line rule:truthy
   schedule:
