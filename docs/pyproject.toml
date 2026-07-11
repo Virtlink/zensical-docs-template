@@ -4,5 +4,5 @@ version = "1.0.0"
 description = "Zensical Docs Template"
 requires-python = ">=3.12"
 dependencies = [
-    "zensical>=0.0.46",
+    "zensical>=0.0.50",
 ]
