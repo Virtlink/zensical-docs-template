@@ -1,7 +1,14 @@
 ---
-# NOTE: This actions requires that GitHub Actions is allowed
-# to create and approve pull requests.
-# See: https://stackoverflow.com/a/73155199/146622
+# NOTE: This workflow requires that GitHub Actions is allowed
+#   to create and approve pull requests.
+#   See: https://stackoverflow.com/a/73155199/146622
+# NOTE: This workflow needs a GitHub App with the following repository permissions:
+# - Contents: Read and write
+# - Pull requests: Read and write
+# - Metadata: Read-only (required)
+# And the following Actions repository secrets:
+# - APP_ID: The ID of the GitHub APP
+# - APP_PRIVATE_KEY: The contents of the GitHub App's private key .pem file
 name: "Update Python Dependencies"
 
 on:  # yamllint disable-line rule:truthy
@@ -15,6 +22,13 @@ jobs:
     name: "Update Python dependencies"
     runs-on: ubuntu-latest
     steps:
+      - name: "Generate GitHub App token"
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
       - name: "Checkout"
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
@@ -43,7 +57,7 @@ jobs:
           labels: |
             dependencies
             automated
-          token: ${{ secrets.PAT_CREATE_PR }}
+          token: ${{ steps.app-token.outputs.token }}
 
       - name: "Auto-merge PR once checks pass"
         if: |
@@ -54,4 +68,4 @@ jobs:
         run: |
           gh pr merge ${{ steps.cpr.outputs.pull-request-number }} --auto --squash
         env:
-          GH_TOKEN: ${{ secrets.PAT_CREATE_PR }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}

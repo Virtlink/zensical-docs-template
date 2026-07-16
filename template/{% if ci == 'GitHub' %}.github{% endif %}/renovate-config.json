@@ -1,9 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "description": "Keep GitHub Actions versions up to date in .github/workflows/, grouped into a single PR with automerge enabled. This file is a self-hosted (global) Renovate config, intentionally named renovate-config.json (not a recognized repo-config filename) so it is not auto-discovered as repository config -- it contains self-hosted-only options such as onboarding, requireConfig and gitAuthor.",
+  "description": "Keep GitHub Actions versions up to date in .github/workflows/, grouped into a single PR with automerge enabled. This file is a self-hosted (global) Renovate config, intentionally named renovate-config.json (not a recognized repo-config filename) so it is not auto-discovered as repository config -- it contains self-hosted-only options such as onboarding, requireConfig and platformCommit.",
   "onboarding": false,
   "requireConfig": "optional",
-  "gitAuthor": "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+  "platformCommit": "enabled",
   "enabledManagers": ["github-actions"],
   "packageRules": [
     {

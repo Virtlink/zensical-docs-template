@@ -1,11 +1,15 @@
 ---
-# NOTE: This action requires that GitHub Actions is allowed
-# to create and approve pull requests.
-# See: https://stackoverflow.com/a/73155199/146622
-# NOTE: The PAT_CREATE_PR token must include the `workflow` scope,
-# otherwise Renovate cannot update workflow files (the github-actions
-# manager modifies files under .github/workflows/).
-# See: https://github.com/renovatebot/github-action#special-token-requirements-when-using-the-github-actions-manager
+# NOTE: This workflow requires that GitHub Actions is allowed
+#   to create and approve pull requests.
+#   See: https://stackoverflow.com/a/73155199/146622
+# NOTE: This workflow needs a GitHub App with the following repository permissions:
+# - Contents: Read and write
+# - Pull requests: Read and write
+# - Metadata: Read-only (required)
+# - Workflows: Read and write
+# And the following Actions repository secrets:
+# - APP_ID: The ID of the GitHub APP
+# - APP_PRIVATE_KEY: The contents of the GitHub App's private key .pem file
 name: "Update GitHub Actions"
 
 on:  # yamllint disable-line rule:truthy
@@ -19,6 +23,13 @@ jobs:
     name: "Update GitHub Actions"
     runs-on: ubuntu-latest
     steps:
+      - name: "Generate GitHub App token"
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
       - name: "Checkout"
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
@@ -26,7 +37,7 @@ jobs:
         uses: renovatebot/github-action@22e0a16091fc706b04affe6ae53d5e3358ac4023 # v46.1.19
         with:
           configurationFile: .github/renovate-config.json
-          token: ${{ secrets.PAT_CREATE_PR }}
+          token: ${{ steps.app-token.outputs.token }}
         env:
           # Tell Renovate which repository to process (the current one).
           RENOVATE_REPOSITORIES: ${{ github.repository }}
