@@ -1,0 +1,25 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Keep GitHub Actions versions up to date in .github/workflows/ and the Copier template copies under template/.../workflows/, grouped into a single PR with automerge enabled. This file is a self-hosted (global) Renovate config, intentionally named renovate-config.json (not a recognized repo-config filename) so it is not auto-discovered as repository config -- it contains self-hosted-only options such as onboarding, requireConfig and gitAuthor.",
+  "onboarding": false,
+  "requireConfig": "optional",
+  "gitAuthor": "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+  "enabledManagers": ["github-actions"],
+  "github-actions": {
+    "managerFilePatterns": [
+      "/^\\.github/workflows/[^/]+\\.ya?ml$/",
+      "/^template/.*workflows/[^/]+\\.ya?ml$/"
+    ]
+  },
+  "packageRules": [
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions",
+      "branchPrefix": "chore/",
+      "branchTopic": "update-github-actions",
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash"
+    }
+  ]
+}

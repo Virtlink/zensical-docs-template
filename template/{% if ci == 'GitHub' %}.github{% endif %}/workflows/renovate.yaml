@@ -25,5 +25,8 @@ jobs:
       - name: "Renovate"
         uses: renovatebot/github-action@22e0a16091fc706b04affe6ae53d5e3358ac4023 # v46.1.19
         with:
-          configurationFile: .github/renovate.json
+          configurationFile: .github/renovate-config.json
           token: ${{ secrets.PAT_CREATE_PR }}
+        env:
+          # Tell Renovate which repository to process (the current one).
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
