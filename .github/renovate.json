@@ -1,0 +1,21 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Keep GitHub Actions versions up to date in .github/workflows/, grouped into a single PR with automerge enabled. The custom fileMatch also scans the Copier template copies under template/.../workflows/ so they stay almost byte-identical to the repo's own .github/workflows/.",
+  "enabledManagers": ["github-actions"],
+  "github-actions": {
+    "fileMatch": [
+      "^\\.github/workflows/[^/]+\\.ya?ml$",
+      "^template/.*workflows/[^/]+\\.ya?ml$"
+    ]
+  },
+  "packageRules": [
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions",
+      "branchName": "chore/update-github-actions",
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash"
+    }
+  ]
+}
