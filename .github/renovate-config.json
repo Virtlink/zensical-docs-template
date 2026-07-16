@@ -16,7 +16,7 @@
       "matchManagers": ["github-actions"],
       "groupName": "GitHub Actions",
       "branchPrefix": "chore/",
-      "branchTopic": "update-github-actions",
+      "separateMajorMinor": false,
       "automerge": true,
       "automergeType": "pr",
       "automergeStrategy": "squash"
