@@ -10,7 +10,7 @@
 # And the following Actions repository secrets:
 # - APP_ID: The ID of the GitHub APP
 # - APP_PRIVATE_KEY: The contents of the GitHub App's private key .pem file
-name: "Update GitHub Actions"
+name: 'Update GitHub Actions'
 
 on:  # yamllint disable-line rule:truthy
   schedule:
@@ -20,24 +20,23 @@ on:  # yamllint disable-line rule:truthy
 
 jobs:
   update-actions:
-    name: "Update GitHub Actions"
+    name: 'Update GitHub Actions'
     runs-on: ubuntu-latest
     steps:
-      - name: "Generate GitHub App token"
+      - name: 'Generate GitHub App token'
         id: app-token
         uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         with:
-          app-id: ${{ secrets.APP_ID }}
+          client-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
-      - name: "Checkout"
+      - name: 'Checkout'
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: "Renovate"
+      - name: 'Run Renovate'
         uses: renovatebot/github-action@1a96852b0384df1837619d04c60b2d10d1f9ff08 # v46.1.21
         with:
           configurationFile: .github/renovate-config.json
           token: ${{ steps.app-token.outputs.token }}
         env:
-          # Tell Renovate which repository to process (the current one).
           RENOVATE_REPOSITORIES: ${{ github.repository }}
