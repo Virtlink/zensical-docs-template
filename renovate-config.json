@@ -1,0 +1,12 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "platform": "github",
+  "extends": ["github>virtlink/renovate-config"],
+  "enabledManagers": ["github-actions"],
+  "github-actions": {
+    "managerFilePatterns": [
+      "/^\\.github/workflows/[^/]+\\.ya?ml$/",
+      "/^template/.*workflows/[^/]+\\.ya?ml$/"
+    ]
+  },
+}
