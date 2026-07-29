@@ -30,7 +30,7 @@ font.code = "JetBrains Mono"
 logo = "fontawesome/solid/cat"
 repo = "fontawesome/brands/github"
 
-[[project.theme.palette]] 
+[[project.theme.palette]]
 scheme = "default"
 primary = "indigo"
 accent = "deep orange"
