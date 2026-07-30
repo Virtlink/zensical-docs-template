@@ -9,7 +9,7 @@
 # - Pull requests: Read and write
 # - Workflows: Read and write
 # And the following Actions repository secrets:
-# - APP_ID: The ID of the GitHub APP
+# - APP_CLIENT_ID: The Client ID of the GitHub APP
 # - APP_PRIVATE_KEY: The contents of the GitHub App's private key .pem file
 
 name: 'Renovate'
@@ -27,5 +27,5 @@ jobs:
     with:
       log-level: info
     secrets:
-      client-id: ${{ secrets.APP_ID }}
+      client-id: ${{ secrets.APP_CLIENT_ID }}
       client-private-key: ${{ secrets.APP_PRIVATE_KEY }}
