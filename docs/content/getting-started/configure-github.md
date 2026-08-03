@@ -84,8 +84,8 @@ In the GitHub repository:
 2.  On the _Secrets_ tab, under _Repository secrets_, click _New repository secret_.
 3.  Add the following secret:
 
-    - Name: `APP_ID`
-    - Secret: the _App ID_ of the GitHub App
+    - Name: `APP_CLIENT_ID`
+    - Secret: the _App Client ID_ of the GitHub App
 
 4.  Click _Add secret_.
 5.  Click _New repository secret_ again, and add:
@@ -106,4 +106,4 @@ In the GitHub repository:
 
 6.  Click _Add secret_.
 
-The workflows already use the `APP_ID` and `APP_PRIVATE_KEY` secrets to generate an App token, so no further changes to the workflows are needed.
+The workflows already use the `APP_CLIENT_ID` and `APP_PRIVATE_KEY` secrets to generate an App token, so no further changes to the workflows are needed.
