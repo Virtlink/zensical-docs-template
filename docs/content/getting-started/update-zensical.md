@@ -5,7 +5,7 @@ To update the Zensical dependency, find the latest release in the [Zensical rele
 cd docs/
 ```
 ```shell
-uv sync --dev
+mise exec -- uv sync --dev
 ```
 
 New versions of Zensical can have breaking changes.

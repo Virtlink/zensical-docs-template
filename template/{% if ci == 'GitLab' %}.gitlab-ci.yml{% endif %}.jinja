@@ -1,28 +1,30 @@
 ---
 variables:
-  UV_VERSION: "0.9.9"
-  PYTHON_VERSION: "3.12"
-  BASE_LAYER: bookworm-slim
+  MISE_DATA_DIR: "$CI_PROJECT_DIR/.mise"
+  MISE_CACHE_DIR: "$CI_PROJECT_DIR/.mise/cache"
   # GitLab CI creates a separate mountpoint for the build directory,
   # so we need to copy instead of using hard links.
   UV_LINK_MODE: copy
 
 pages:
   stage: deploy
-  image: ghcr.io/astral-sh/uv:$UV_VERSION-python$PYTHON_VERSION-$BASE_LAYER
+  image: ghcr.io/jdx/mise:2026.10.4-debian
   variables:
-    UV_CACHE_DIR: .uv-cache
+    UV_CACHE_DIR: "$CI_PROJECT_DIR/.uv-cache"
   cache:
     - key:
         files:
-          - uv.lock
+          - docs/mise.toml
+          - docs/uv.lock
       paths:
-        - $UV_CACHE_DIR
+        - .mise/installs/
+        - .mise/cache/
+        - .uv-cache/
   script:
     - cd docs/
-    - uv sync --locked --all-extras --dev
-    - uv run zensical build --clean
-    - uv cache prune --ci
+    - mise install
+    - mise run build
+    - mise exec -- uv cache prune --ci
     # GitLab expects the documentation in the public/ folder in the root
     - mkdir -p ../public
     - cp -rv public/* ../public

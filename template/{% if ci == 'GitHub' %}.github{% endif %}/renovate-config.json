@@ -1,19 +1,23 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "description": "Keep GitHub Actions versions up to date in .github/workflows/, grouped into a single PR with automerge enabled. This file is a self-hosted (global) Renovate config, intentionally named renovate-config.json (not a recognized repo-config filename) so it is not auto-discovered as repository config -- it contains self-hosted-only options such as onboarding, requireConfig and platformCommit.",
-  "onboarding": false,
-  "requireConfig": "optional",
-  "platformCommit": "enabled",
-  "enabledManagers": ["github-actions"],
-  "packageRules": [
-    {
-      "matchManagers": ["github-actions"],
-      "groupName": "GitHub Actions",
-      "branchPrefix": "chore/",
-      "separateMajorMinor": false,
-      "automerge": true,
-      "automergeType": "pr",
-      "automergeStrategy": "squash"
-    }
-  ]
+  "extends": ["github>virtlink/renovate-config"],
+  "enabledManagers": ["github-actions", "gitlabci", "mise"],
+  "github-actions": {
+    "managerFilePatterns": [
+      "/^\\.github/workflows/[^/]+\\.ya?ml$/",
+      "/^template/.*workflows/[^/]+\\.ya?ml$/"
+    ]
+  },
+  "gitlabci": {
+    "managerFilePatterns": [
+      "/^\\.gitlab-ci\\.ya?ml$/",
+      "/^template/.*\\.gitlab-ci\\.ya?ml.*\\.jinja$/"
+    ]
+  },
+  "mise": {
+    "managerFilePatterns": [
+      "/^docs/mise\\.toml$/",
+      "/^template/docs/mise\\.toml$/"
+    ]
+  }
 }

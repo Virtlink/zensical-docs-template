@@ -20,14 +20,22 @@ To use this template, install [Copier](https://copier.readthedocs.io/en/stable/)
 copier copy gh:virtlink/zensical-docs-template my-docs-repo
 ```
 
-where `my-docs-repo` is the name of the directory where you want to create the new documentation repository. From within the documentation repository, to build the pages and see edits live using [UV](https://docs.astral.sh/uv/):
+where `my-docs-repo` is the name of the directory where you want to create the new documentation repository. Install [Mise](https://mise.jdx.dev/) to build the documentation:
 
 ```shell
 cd docs/
 ```
 ```shell
-uv run zensical serve
+mise run build
 ```
+
+To preview changes locally:
+
+```shell
+mise run serve
+```
+
+Mise installs UV, which installs the required Python version and project dependencies.
 
 Navigate to [localhost:8000](http://localhost:8000/) to see the documentation. The local documentation is automatically reloaded when changes occur. Changes pushed to the `main` branch are automatically deployed on GitHub and GitLab.
 

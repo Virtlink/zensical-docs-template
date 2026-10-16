@@ -32,15 +32,14 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: "Install UV"
-        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+      - name: "Set up Mise"
+        uses: jdx/mise-action@665d82088236dd987b2af6165be29d21e2e11184 # v3.0.0
         with:
-          enable-cache: true
+          working_directory: docs
 
       - name: "Update Python lockfile"
-        run: |
-          cd docs/
-          uv lock --upgrade
+        working-directory: docs
+        run: mise exec -- uv lock --upgrade
 
       - name: "Create PR"
         id: cpr

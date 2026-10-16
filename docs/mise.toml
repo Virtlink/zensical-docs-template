@@ -1,0 +1,13 @@
+[env]
+UV_MANAGED_PYTHON = "true"
+
+[tools]
+uv = "0.10.9"
+
+[tasks.build]
+description = "Build the documentation site"
+run = "uv run zensical build --clean"
+
+[tasks.serve]
+description = "Serve the documentation site locally"
+run = "uv run zensical serve"

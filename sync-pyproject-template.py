@@ -8,8 +8,8 @@ It is intended to be run from the root of the repository, e.g.::
     python3 sync-pyproject-template.py
 
 It is also invoked by the `.github/workflows/update-python-dependencies.yaml`
-workflow right after `uv lock --upgrade` and the `sync-pyproject` action
-have updated `docs/pyproject.toml`.
+workflow right after Mise runs `uv lock --upgrade` and the `sync-pyproject`
+action has updated `docs/pyproject.toml`.
 """
 
 from __future__ import annotations
