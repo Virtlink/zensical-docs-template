@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["local>my-org/renovate-config"],
+  "extends": ["local>virtlink/renovate-config"],
   "github-actions": {
     "managerFilePatterns": [
       "/^\\.github/workflows/[^/]+\\.ya?ml$/",
