@@ -15,10 +15,6 @@ permissions:
   pages: write
   id-token: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
 jobs:
   build:
     name: "Build Documentation"
@@ -46,6 +42,9 @@ jobs:
     name: "Deploy Documentation"
     needs: build
     if: github.event_name != 'pull_request'
+    concurrency:
+      group: "pages"
+      cancel-in-progress: true
     runs-on: ubuntu-latest
     environment:
       name: github-pages
