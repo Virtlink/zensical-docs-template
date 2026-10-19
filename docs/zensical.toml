@@ -4,7 +4,7 @@ site_description = "Template for Zensical"
 site_author = "Daniel A. A. Pelsmaeker"
 
 site_dir = "public/"
-site_url = "https://pelsmaeker.net/zensical-docs-template"
+site_url = "https://virtlink.com/zensical-docs-template"
 docs_dir = "content/"
 repo_url = "https://github.com/Virtlink/zensical-docs-template"
 edit_uri = "https://github.com/Virtlink/zensical-docs-template/edit/main/docs"

@@ -7,7 +7,7 @@ A Zensical Docs Template repository. It enables an opinionated set of extensions
 
 [![Documentation][documentation-button]][documentation]
 
-- [Getting Started](https://pelsmaeker.net/zensical-docs-template/getting-started/create-the-project/)
+- [Getting Started](https://virtlink.com/zensical-docs-template/getting-started/create-the-project/)
 - [Zensical documentation](https://zensical.org/)
 
 This template is intended both for those that include the documentation in their main repository, and those that use a separate repository for the documentation, which is why all the documentation files are in the `docs/` subfolder.
@@ -51,5 +51,5 @@ To the extent possible under law, Daniel A. A. Pelsmaeker has waived all copyrig
 [license-badge]: https://img.shields.io/github/license/Virtlink/zensical-docs-template
 [license]: https://github.com/Virtlink/zensical-docs-template/blob/master/LICENSE
 [documentation-badge]: https://img.shields.io/badge/docs-latest-brightgreen
-[documentation]: https://pelsmaeker.net/zensical-docs-template/
+[documentation]: https://virtlink.com/zensical-docs-template/
 [documentation-button]: https://img.shields.io/badge/View_Documentation-blue?style=for-the-badge&logo=googledocs&logoColor=white

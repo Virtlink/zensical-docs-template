@@ -53,7 +53,7 @@ By design, workflows that use the `GITHUB_TOKEN` [will not trigger new workflow 
 2.  Click _New GitHub App_. Give the following values:
 
     - GitHub App name: `Virtlink Bot`
-    - Homepage URL: `https://pelsmaeker.net/`
+    - Homepage URL: `https://virtlink.com/`
     - **Webhook**
         - Active: :x: disabled
     - **Repository permissions**
