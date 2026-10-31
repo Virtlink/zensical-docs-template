@@ -2,7 +2,7 @@
 UV_MANAGED_PYTHON = "true"
 
 [tools]
-uv = "0.13.4"
+uv = "0.13.6"
 
 [tasks.build]
 description = "Build the documentation site"
